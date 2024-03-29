@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Slider</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    .slider-container {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .prev,
+    .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        text-decoration: none;
+        font-size: 24px;
+        padding: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+  .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }    
+</style>
+</head>
+<body>
+<div class="slider-container">
+    <div class="slider">
+        <div class="slide">
+            <img src="img1.jpg">
+        </div>
+        <div class="slide">
+            <img src="img2.avif">
+        </div>
+        <div class="slide">
+            <img src="img3.avif">
+        </div>
+        <div class="slide">
+            <img src="img5.jpg">
+        </div>
+    </div>
+    <a href="#" class="prev" onclick="prevSlide()"><</a>
+    <a href="#" class="next" onclick="nextSlide()">></a>
+</div>
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    let showSlide=(index)=> {
+        slides.forEach((slide, i) => {
+            if (i === index) {
+                slide.style.display = 'block';
+            } else {
+                slide.style.display = 'none';
+            }
+        });
+    }
+
+    let nextSlide=() =>{
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    let  prevSlide=()=> {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    showSlide(currentSlide);
+</script>
+</body>
+</html>
